@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PoliChain Hackathon Project - Betting Site
 
 Welcome to our group's project for the PoliChain hackathon! This is a web application developed using Vite, React, JSX, and connected to Metamask to create a decentralized betting site. Our application allows two participants to place a bet, and a judge determines the winner. The winner is rewarded with cryptocurrency, all managed by a smart contract on the blockchain.
