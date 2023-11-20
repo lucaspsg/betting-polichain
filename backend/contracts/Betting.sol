@@ -176,6 +176,7 @@ contract Betting {
 
     function closeBet(uint256 betId) external payable {
         require(msg.sender == betIdToOwner[betId]);
+        require(bets[betId].isOpen == true);
         PrizeInfo[] memory betterToPrizes = getBettersPrizes(betId);
         PrizeInfo[] memory validatorToPrizes = getValidatorsPrizes(betId);
         PrizeInfo memory ownerToPrizes = getBetOwnerPrizes(betId)[0];
