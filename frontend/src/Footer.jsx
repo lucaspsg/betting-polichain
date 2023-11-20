@@ -1,9 +1,9 @@
 // AcceptBet.jsx
 import React, { useState } from 'react';
-import './AcceptBetFooter.css'; // Corrija a importação do estilo CSS
-//import AcceptBetFooter from './AcceptBetFooter'; // Importe o novo componente
+import './AcceptBetFooter.css';
+import AcceptBet from './AcceptBet'; // Importe o novo componente
 
-const AcceptBet = ({ contract: contract2, betId }) => {
+const Footer = ({ contract: contract2, betId }) => {
   const [feedback, setFeedback] = useState('');
 
   const handleAcceptBet = async () => {
@@ -37,4 +37,4 @@ const AcceptBet = ({ contract: contract2, betId }) => {
   );
 };
 
-export default AcceptBet;
+export default Footer;

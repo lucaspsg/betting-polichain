@@ -1,33 +1,62 @@
+// StartBet.jsx
 import React, { useState } from 'react';
-import contract from './backend/contracts';
+import './StartBet.css'; // Importe o arquivo de estilo para StartBet
+ // Importe o arquivo de estilo para AcceptBetFooter
+//import contract from '../../backend/contracts'; // ajuste o caminho conforme necessário
 
-// Componente StartBet que utiliza as dependências necessárias e a lógica do contrato
-const StartBet = ({ betId }) => {
-  const [side1, setSide1] = useState('');
-  const [side2, setSide2] = useState('');
-  const [feedback, setFeedback] = useState('');
+const StartBet = () => {
+  const [betDetails, setBetDetails] = useState({
+    name: '',
+    side1: '',
+    side2: '',
+  });
 
   const handleStartBet = async () => {
     try {
-      // Chame a função do contrato para iniciar a aposta
-      const tx = await contract.methods.createBet('Nome da Aposta', side1, side2).send({ from: 'suaConta' });
-      setFeedback(`Aposta iniciada com sucesso! ID da Aposta: ${tx.events.BetCreated.returnValues.betId}`);
+      // Faça a chamada para o backend usando /api como prefixo
+      const response = await fetch('/api/sua-rota', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(betDetails),
+      });
+
+      // Adicione lógica para lidar com a resposta, se necessário
+      console.log('Resposta do backend:', response);
     } catch (error) {
-      setFeedback('Erro ao iniciar a aposta. Por favor, tente novamente.');
       console.error('Erro ao iniciar a aposta:', error);
     }
   };
 
   return (
     <div>
-      <h2>Iniciar Aposta</h2>
-      <input type="text" placeholder="Lado 1" onChange={(e) => setSide1(e.target.value)} />
-      <input type="text" placeholder="Lado 2" onChange={(e) => setSide2(e.target.value)} />
+      <h2>Betting Polichain</h2>
+      {/* Adicione elementos e lógica para iniciar a aposta */}
+      <input
+        type="text"
+        placeholder="Nome da aposta"
+        value={betDetails.name}
+        onChange={(e) => setBetDetails({ ...betDetails, name: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Apostador A"
+        value={betDetails.side1}
+        onChange={(e) => setBetDetails({ ...betDetails, side1: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Apostador B"
+        value={betDetails.side2}
+        onChange={(e) => setBetDetails({ ...betDetails, side2: e.target.value })}
+      />
       <button onClick={handleStartBet}>Iniciar Aposta</button>
-      {feedback && <p>{feedback}</p>}
     </div>
   );
 };
 
 export default StartBet;
+
+       
 

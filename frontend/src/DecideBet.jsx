@@ -1,22 +1,25 @@
+// DecideBet.jsx
 import React, { useState } from 'react';
-import contract from './backend/contracts'; // substitua pelo caminho real
+//import contract from '../../backend/contracts'; // ajuste o caminho conforme necessário
 
-const DecideBet = ({ contract, betId }) => {
-  const [feedback, setFeedback] = useState('');
+const DecideBet = ({ contract: contract2, betId }) => {
+  const [decision, setDecision] = useState('');
 
-  const handleDecideBet = async () => {
+  const handleDecision = async () => {
     try {
-      // Chame a função do contrato para decidir a aposta
-      const tx = await contract.methods.decideBet(betId).send({ from: 'suaConta' });
+      // Faça a chamada para o backend usando /api como prefixo
+      const response = await fetch('/api/sua-rota', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ decision, betId }),
+      });
 
-      // Adicione lógica para decidir a aposta, se necessário
-
-      // Adicione feedback para o usuário, se necessário
-      console.log('A aposta foi decidida com sucesso!', tx);
-      setFeedback('Aposta decidida com sucesso!');
+      // Adicione lógica para lidar com a resposta, se necessário
+      console.log('Resposta do backend:', response);
     } catch (error) {
-      console.error('Erro ao decidir a aposta', error);
-      setFeedback('Erro ao decidir a aposta. Por favor, tente novamente.');
+      console.error('Erro ao fazer a chamada para o backend:', error);
     }
   };
 
@@ -24,8 +27,13 @@ const DecideBet = ({ contract, betId }) => {
     <div>
       <h2>Decidir Aposta</h2>
       {/* Adicione elementos e lógica para decidir a aposta */}
-      <button onClick={handleDecideBet}>Decidir Aposta</button>
-      {feedback && <p>{feedback}</p>}
+      <input
+        type="text"
+        placeholder="Digite sua decisão"
+        value={decision}
+        onChange={(e) => setDecision(e.target.value)}
+      />
+      <button onClick={handleDecision}>Tomar Decisão</button>
     </div>
   );
 };
