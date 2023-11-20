@@ -106,16 +106,16 @@ contract Betting {
     }
 
     function getBetResult(uint256 betId) public view returns (bool) {
-        uint256 side1 = 0;
-        uint256 side2 = 0;
-        for (uint i = 0; i < betIdToBetters[betId].length; i++) {
-            Better memory better = betIdToBetters[betId][i];
-            if (better.side == false) side1++;
-            else side2++;
-        }
-        return side2 > side1;
+    uint256 side1 = 0;
+    uint256 side2 = 0;
+    for (uint i = 0; i < betIdToBetters[betId].length; i++) {
+        Better memory better = betIdToBetters[betId][i];
+        if (better.side == false) side1++;
+        else side2++;
     }
-
+    return side2 > side1;
+    }
+    
     function getBettersPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         bool betResult = getBetResult(betId);            
         uint256 totalAmount = bets[betId].amount * 50 / 100; // 50% of prize amount goes to betters

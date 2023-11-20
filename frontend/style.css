@@ -1,0 +1,197 @@
+:root {
+    --main-bg-color: #120000;
+    --main-bg-color-fade-5: rgba(18, 0, 0, 0.51);
+    --primary-color: #ff213c;
+    --primary-shade-color: #d41c32;
+    --secundary-color: #57417a;
+}
+
+body, html {
+    font-family: arial, sans-serif;
+    background-color: var(--main-bg-color);
+    color: #fff;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ... (restante das regras de estilo) */
+
+/* Exemplo de estilo para a barra de navegação fixa */
+#main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: var(--main-bg-color);
+    z-index: 3;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+#main-header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#main-header nav ul li {
+    margin: 0;
+}
+
+#main-header nav ul li a {
+    color: #fff;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+#main-header nav ul li.brand {
+    max-width: 9%;
+    margin: 0;
+}
+
+#main-header nav ul li.brand img {
+    width: 100%;
+}
+
+/* Exemplo de estilo para o conteúdo da página */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* ... (adapte conforme necessário) */
+
+footer {
+    text-align: center;
+    margin: 50px 0 20px;
+    font-size: 0.8em;
+    color: darkgray;
+}
+/* Exemplo de estilo para a barra de navegação fixa em rolagem */
+#main-header.scrolled {
+    background-color: #0d0a12;
+}
+
+#main-header.scrolled nav ul li a {
+    color: var(--primary-color);
+}
+
+#main-header.scrolled nav ul li a:before {
+    background-color: var(--primary-color);
+}
+
+#main-header.scrolled nav .active a::before {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+/* Exemplo de estilo para o slider */
+.slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider > figure {
+    margin: 0;
+    position: relative;
+}
+
+.slider > figure > img {
+    width: 100%;
+    max-height: 100vh;
+}
+
+.slider > .slide-caption {
+    position: absolute;
+    top: 15%;
+    left: 4%;
+    width: 25%;
+    padding: 25px;
+    background-color: var(--main-bg-color);
+    border-left: 5px solid var(--primary-color);
+    color: #fff;
+}
+
+/* ... (regras de estilo adicionais para o slider) */
+
+/* Exemplo de estilo para a seção "season" */
+.season {
+    /* ... (ajustes de estilo específicos para a seção "season") */
+}
+
+.season > .episodes {
+    /* ... (ajustes de estilo específicos para a seção "episodes") */
+}
+
+/* ... (regras de estilo adicionais para a seção "season") */
+
+/* Exemplo de estilo para a seção "characters" */
+#character-profile > .character {
+    /* ... (ajustes de estilo específicos para a seção "character") */
+}
+
+#character-profile > .character > figure > img {
+    /* ... (ajustes de estilo específicos para a imagem do personagem) */
+}
+
+/* ... (regras de estilo adicionais para a seção "characters") */
+
+/* Exemplo de estilo para a seção "webshop" */
+#webshop > .shop {
+    /* ... (ajustes de estilo específicos para a seção "webshop") */
+}
+
+.shop > .shop-item {
+    /* ... (ajustes de estilo específicos para cada item na loja) */
+}
+
+.shop > .selected-shop-item {
+    /* ... (ajustes de estilo específicos para a seção "selected-shop-item") */
+}
+
+.shop > .selected-shop-item > .content {
+    /* ... (ajustes de estilo específicos para o conteúdo da seção "selected-shop-item") */
+}
+
+/* ... (regras de estilo adicionais para a seção "webshop") */
+
+/* Exemplo de estilo para a seção "order form" */
+.order-form {
+    /* ... (ajustes de estilo específicos para a seção "order form") */
+}
+
+.order-form > form .field {
+    /* ... (ajustes de estilo específicos para os campos do formulário) */
+}
+
+/* ... (regras de estilo adicionais para a seção "order form") */
+
+/* Estilos responsivos para diferentes tamanhos de tela (media queries) */
+@media only screen and (max-width: 1300px) {
+    /* ... (ajustes de estilo para telas com largura máxima de 1300px) */
+}
+
+@media only screen and (max-width: 1000px) {
+    /* ... (ajustes de estilo para telas com largura máxima de 1000px) */
+}
+
+@media only screen and (max-width: 760px) {
+    /* ... (ajustes de estilo para telas com largura máxima de 760px) */
+}
+
+@media only screen and (max-width: 560px) {
+    /* ... (ajustes de estilo para telas com largura máxima de 560px) */
+}
