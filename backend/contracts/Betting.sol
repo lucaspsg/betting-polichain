@@ -10,6 +10,7 @@ contract Betting {
         uint256 amount;
         bool isOpen;
         bool exists;
+        uint256 betId;
     }
 
     struct Better {
@@ -25,7 +26,7 @@ contract Betting {
     }
 
     struct PrizeInfo {
-        address user_address;
+        address userAddress;
         uint256 amount;
     }
 
@@ -59,7 +60,8 @@ contract Betting {
             _side2,
             0,
             true,
-            true
+            true,
+            lastBetId
         );
         betIdToOwner[lastBetId] = msg.sender;
         openBets++;
@@ -116,7 +118,7 @@ contract Betting {
 
     function getBettersPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         bool betResult = getBetResult(betId);            
-        uint256 totalAmount = bets[betId].amount * 80 / 100; // 80% of prize amount goes to betters
+        uint256 totalAmount = bets[betId].amount * 50 / 100; // 50% of prize amount goes to betters
         uint256 totalAmountWinners = 0;
         uint256 prizesSize = 0;
         for (uint i = 0; i < betIdToBetters[betId].length; i++) {
@@ -128,7 +130,7 @@ contract Betting {
         }
         PrizeInfo[] memory prizes = new PrizeInfo[](prizesSize);
         uint256 distributedPrizes = 0;
-        for (uint i = 0; i < prizesSize; i++) {
+        for (uint i = 0; i < betIdToBetters[betId].length && distributedPrizes < prizesSize; i++) {
             Better memory better = betIdToBetters[betId][i];
             if (better.side == betResult) {
                 prizes[distributedPrizes++] = PrizeInfo(
@@ -142,7 +144,7 @@ contract Betting {
 
     function getValidatorsPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         bool betResult = getBetResult(betId);            
-        uint256 totalAmount = bets[betId].amount * 80 / 100; // 80% of prize amount goes to validators
+        uint256 totalAmount = bets[betId].amount * 10 / 100; // 8% of prize amount goes to validators
         uint256 totalAmountRightValidators = 0;
         uint256 prizesSize = 0;
         for (uint i = 0; i < betIdToValidators[betId].length; i++) {
@@ -169,39 +171,44 @@ contract Betting {
 
     function getBetOwnerPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         PrizeInfo[] memory prizes = new PrizeInfo[](1);
-        uint256 totalAmount = bets[betId].amount * 5 / 100; // 5% of prize amount goes to bet owner
+        uint256 totalAmount = bets[betId].amount * 5 / 1000; // 0.5% of prize amount goes to bet owner
         address owner = betIdToOwner[betId];
         prizes[0] = PrizeInfo(owner,totalAmount);
+        return prizes;
     }
 
+    event Debugging(uint256 i);
+
     function closeBet(uint256 betId) external payable {
-        require(msg.sender == betIdToOwner[betId]);
-        require(bets[betId].isOpen == true);
+        require(msg.sender == betIdToOwner[betId], "owner");
+        require(bets[betId].isOpen == true, "closed");
         PrizeInfo[] memory betterToPrizes = getBettersPrizes(betId);
         PrizeInfo[] memory validatorToPrizes = getValidatorsPrizes(betId);
         PrizeInfo memory ownerToPrizes = getBetOwnerPrizes(betId)[0];
         uint256 totalAmount = bets[betId].amount;
+        uint256 amount;
+        bool success;
         for (uint i = 0; i < betterToPrizes.length; i++) {
-            address betterAddress = betterToPrizes[i].user_address;
-            uint256 amount = betterToPrizes[i].amount;
-            bool success = payable(betterAddress).send(amount);
-            require(success);
+            address betterAddress = betterToPrizes[i].userAddress;
+            amount = betterToPrizes[i].amount;
+            success = payable(betterAddress).send(amount);
+            require(success, "transaction to better failed");
             totalAmount -= amount;
         }
         for (uint i = 0; i < validatorToPrizes.length; i++) {
-            address validatorAddress = validatorToPrizes[i].user_address;
-            uint256 amount = validatorToPrizes[i].amount;
-            bool success = payable(validatorAddress).send(amount);
-            require(success);
+            address validatorAddress = validatorToPrizes[i].userAddress;
+            amount = validatorToPrizes[i].amount;
+            success = payable(validatorAddress).send(amount);
+            require(success, "transcation to validator failed");
             totalAmount -= amount;
         }
-        address ownerAddress = ownerToPrizes.user_address;
-        uint256 amount = ownerToPrizes.amount;
-        bool success = payable(ownerAddress).send(amount);
-        require(success);
+        address ownerAddress = ownerToPrizes.userAddress;
+        amount = ownerToPrizes.amount;
+        success = payable(ownerAddress).send(amount);
+        require(success, "transaction to owner failed");
         totalAmount -= amount;
-
         success = payable(contractOwner).send(totalAmount);
-        require(success);
+        require(success, "transaction to contract owner failed");
+        bets[betId].isOpen = false;
     }
 }
