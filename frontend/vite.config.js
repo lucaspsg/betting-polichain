@@ -1,17 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-
-export default defineConfig({
-  plugins: [react()],
+// vite.config.js
+export default {
+  // ... outras configurações ...
   server: {
-    proxy: {
-      '/api': 'http://127.0.0.1:8545',
-    },
+    proxy: {},
   },
-  resolve: {
-    alias: {
-      '@backend': path.resolve(__dirname, '../backend'),
-    },
-  },
-});
+};

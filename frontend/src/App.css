@@ -1,42 +1,75 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* App.css */
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.betting-title {
+  font-size: 48px;
+  margin-bottom: 25px;
+}
+
+.login-input,
+.bet-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.join-button,
+.add-participant-button,
+.start-bet-button {
+  background-color: #ffcc00;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.join-button:hover,
+.add-participant-button:hover,
+.start-bet-button:hover {
+  background-color: #e5bb00;
+}
+
+/* Alterações específicas para AcceptBet.jsx */
+
+.accept-bet-container {
+  background-color: #000; /* Cor de fundo desejada para a página AcceptBet */
+  color: #fff; /* Cor do texto */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.participants-info {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.judge-info {
+  margin-top: 20px;
+  text-align: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Alterações específicas para Header.jsx */
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.add-participant-button {
+  margin-right: 10px;
 }

@@ -1,31 +1,32 @@
+// Header.jsx
 import React, { useState } from 'react';
-import './StartBet.css';
+import { Link, useNavigate } from 'react-router-dom';
+import './App.css';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [betDetails, setBetDetails] = useState({
     name: '',
-    side1: '',
-    side2: '',
+    participants: [''],
   });
 
-  const handleStartBet = async () => {
-    try {
-      const response = await fetch('/api/sua-rota', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(betDetails),
-      });
+  const handleInputChange = (index, value) => {
+    const newParticipants = [...betDetails.participants];
+    newParticipants[index] = value;
+    setBetDetails({ ...betDetails, participants: newParticipants });
+  };
 
-      console.log('Resposta do backend:', response);
-    } catch (error) {
-      console.error('Erro ao iniciar a aposta:', error);
-    }
+  const handleAddParticipant = () => {
+    setBetDetails({ ...betDetails, participants: [...betDetails.participants, ''] });
+  };
+
+  const handleStartBet = () => {
+    navigate('/start/accept');
+    //navigate('/accept');
   };
 
   return (
-    <div className="start-bet-container">
+    <div className="start-bet-container centralize-content">
       <h2 className="betting-title">Betting Polichain</h2>
       <div className="input-container">
         <input
@@ -36,25 +37,24 @@ const Header = () => {
           onChange={(e) => setBetDetails({ ...betDetails, name: e.target.value })}
         />
       </div>
-      <div className="input-container">
-        <input
-          className="bet-input"
-          type="text"
-          placeholder="Apostador A"
-          value={betDetails.side1}
-          onChange={(e) => setBetDetails({ ...betDetails, side1: e.target.value })}
-        />
-      </div>
-      <div className="input-container">
-        <input
-          className="bet-input"
-          type="text"
-          placeholder="Apostador B"
-          value={betDetails.side2}
-          onChange={(e) => setBetDetails({ ...betDetails, side2: e.target.value })}
-        />
-      </div>
-      <button onClick={handleStartBet} className="start-bet-button">
+
+      {betDetails.participants.map((participant, index) => (
+        <div key={index} className="input-container">
+          <input
+            className="bet-input"
+            type="text"
+            placeholder={`Apostador ${String.fromCharCode(65 + index)}`}
+            value={participant}
+            onChange={(e) => handleInputChange(index, e.target.value)}
+          />
+        </div>
+      ))}
+
+      <button onClick={handleAddParticipant} className="add-participant-button">
+        Adicionar Apostador
+      </button>
+
+      <button onClick={handleStartBet} className="start-bet-button" style={{ marginTop: '10px' }}>
         Iniciar Aposta
       </button>
     </div>

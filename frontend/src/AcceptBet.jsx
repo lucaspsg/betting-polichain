@@ -1,39 +1,48 @@
 // AcceptBet.jsx
-import React, { useState } from 'react';
-import './AcceptBetFooter.css'; // Corrija a importação do estilo CSS
-//import AcceptBetFooter from './AcceptBetFooter'; // Importe o novo componente
+import React, { useState, useEffect } from 'react';
+import './App.css'; // Certifique-se de ter o estilo CSS adequado
 
-const AcceptBet = ({ contract: contract2, betId }) => {
-  const [feedback, setFeedback] = useState('');
+const AcceptBet = () => {
+  const [participants, setParticipants] = useState([
+    { name: 'Apostador A', wallet: '0x123...', betAmount: 10 },
+    // Adicione outros participantes conforme necessário
+  ]);
 
-  const handleAcceptBet = async () => {
-    try {
-      // Faça a chamada para o backend usando /api como prefixo
-      const response = await fetch('/api/sua-rota', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ betId }),
-      });
+  const [judgeInfo, setJudgeInfo] = useState({
+    votes: 0,
+    percentage: 0,
+    result: 'Aguardando decisão',
+    winners: [],
+  });
 
-      // Adicione lógica para lidar com a resposta, se necessário
-      console.log('Resposta do backend:', response);
-      setFeedback('Aposta aceita com sucesso!');
-    } catch (error) {
-      console.error('Erro ao aceitar a aposta:', error);
-      setFeedback('Erro ao aceitar a aposta. Por favor, tente novamente.');
-    }
-  };
+  // Adicionando useEffect para logar dados no console
+  useEffect(() => {
+    console.log('Dados de participants:', participants);
+    console.log('Dados de judgeInfo:', judgeInfo);
+  }, [participants, judgeInfo]);
 
   return (
-    <div>
-      <h2>Aceitar Aposta</h2>
-      {/* Adicione elementos e lógica para aceitar a aposta */}
-      <button onClick={handleAcceptBet}>Aceitar Aposta</button>
-      {feedback && <p>{feedback}</p>}
-      <AcceptBetFooter /> {/* Renderize o rodapé específico desta página */}
-    </div>
+    <>
+      <div className="accept-bet-container">
+        <div className="participants-info">
+          {participants.map((participant, index) => (
+            <div key={index}>
+              <h3>{participant.name}</h3>
+              <p>Carteira: {participant.wallet}</p>
+              <p>Valor Apostado: {participant.betAmount}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="judge-info">
+          <h3>Informações do Juiz</h3>
+          <p>Número de Votos: {judgeInfo.votes}</p>
+          <p>Porcentagem em Relação ao Total de Votos: {judgeInfo.percentage}%</p>
+          <p>Resultado Final: {judgeInfo.result}</p>
+          <p>Ganhadores: {judgeInfo.winners.join(', ')}</p>
+        </div>
+      </div>
+    </>
   );
 };
 
