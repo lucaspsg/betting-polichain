@@ -1,26 +1,25 @@
-// App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './Header.jsx';
-import AcceptBet from './AcceptBet.jsx';
-import Login from './Login.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from "./pages/Login/"
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login/>
+  },
+  // {
+  //   path: "/auth",
+  //   element: <Login/>
+  // },
+  // {
+  //   path: "/home",
+  //   element: <Home/>
+  // },
+]);
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route
-          path="/start"
-          element={
-            <React.Fragment>
-              <Header />
-            </React.Fragment>
-          }
-        />
-        <Route path="/start/accept" element={<AcceptBet />} />
-      </Routes>
-    </Router>
+      <RouterProvider router={router} />
   );
 };
 
