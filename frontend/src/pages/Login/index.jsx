@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../components/Button'
 import './index.css'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const generateCoinImageCss = (n) => ({
         width: '20%',
@@ -27,7 +27,7 @@ const Root = () => {
             <div className='main-div'>
                 <div className="div-title-and-login">
                     <h1 className='title'> Betting.gg </h1>
-                    <Button label={"Login"} handleClick={() => console.log("Alguma funcao de auth com metamask ou outras wallets usando rainbow kit")} />
+                    <ConnectButton label="Login"/>
                 </div>
                 <img src="assets/spongebob.png" className='spongebob-image' />
                 {

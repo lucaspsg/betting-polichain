@@ -13,9 +13,9 @@
 .div-title-and-login {
     display: flex;
     width: auto;
-    height: 260px;
+    height: auto;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-left: 20%;
     margin-bottom: 10%;
