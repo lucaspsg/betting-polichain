@@ -53,8 +53,13 @@ contract Betting {
         contractOwner = msg.sender;
     }
 
-    function createBet(string memory _name, string memory _side1, string memory _side2) external {
-        bets[++lastBetId] = Bet(
+    function getNOfBets() public view returns (uint256) {
+        return lastBetId;
+    }
+
+    function createBet(string memory _name, string memory _side1, string memory _side2) external returns (uint256) {
+        lastBetId++;
+        bets[lastBetId] = Bet(
             _name,
             _side1,
             _side2,
@@ -65,6 +70,7 @@ contract Betting {
         );
         betIdToOwner[lastBetId] = msg.sender;
         openBets++;
+        return lastBetId;
     }
 
     function getOpenBets() external view returns (Bet[] memory) {
@@ -210,5 +216,6 @@ contract Betting {
         success = payable(contractOwner).send(totalAmount);
         require(success, "transaction to contract owner failed");
         bets[betId].isOpen = false;
+        openBets--;
     }
 }

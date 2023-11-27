@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import { useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi';
+import bettingAbi from '../../abi'
 
 const CreateBet = () => {
   const navigate = useNavigate();
@@ -12,8 +14,15 @@ const CreateBet = () => {
     side2: ''
   });
 
-  const handleStartBet = () => {
-  };
+    const { config } = usePrepareContractWrite({
+        address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+        abi: bettingAbi,
+        functionName: 'createBet',
+        args: [betDetails.name, betDetails.side1, betDetails.side2],
+    })
+
+    const { write: createBet, isSuccess } = useContractWrite(config)
+
 
   return (
     <>
@@ -50,7 +59,7 @@ const CreateBet = () => {
           />
         </div>
 
-          <button onClick={handleStartBet} className="start-bet-button" style={{ marginTop: '10px' }}>
+          <button onClick={() => createBet?.()} className="start-bet-button" style={{ marginTop: '10px' }}>
             Create Bet
           </button>
         </div>

@@ -1,0 +1,63 @@
+const teste = await deployedContract.getOpenBets()
+await deployedContract.getOpenBets()
+deployedContract.getOpenBets()
+const deployedContract = await myContract.attach("0x5fbdb2315678afecb367f032d93f642f64180aa3")
+ const myContract = await ethers.getContractFactory("Betting")
+const myContract = await ethers.getContractFactory("Betting")
+const myContract = await ethers.contractFactory("Betting")
+.exit
+Betting.abi
+await ethers.getSigners()
+deployedContract
+await deployedContract.deployed()
+const deployedContract = await myContract.deploy()
+const myContractt = await ethers.getContractFactory("Bettting");
+myContract
+const myContract = await ethers.getContractFactory("Betting");
+console.log(result);
+const result = await deployedContract.myMethod();
+// Interact with the contract
+await deployedContract.deployed();
+const deployedContract = await myContract.deploy();
+const myContract = await ethers.getContractFactory("MyContract");
+decodeURI
+deocde
+deployedContract.address
+const deployedContract = await myContract.attach("0x5fbdb2315678afecb367f032d93f642f64180aa3")
+const myContract = await ethers.getContractFactory("Betting")
+npx hardhat run --network localhost ./scripts/deploy.js
+console.log(deployedContract.interface.abi)
+console.log(2)
+const methodNamess = contractABI.filter(item => item.type === "function")
+const methodNames = contractABI.filter(item => item.type === "function")
+delete methodNames
+const methodNames = contractABI.filter(item => item.type === "function")
+const methodNames = contractABI.filter((item) => item.type === "function").map((item) => item.name);
+const contractABI = deployedContract.interface.abi
+deployedContract
+deployedContract.maxBet
+await deployedContract.minBet
+deployedContract.maxBet
+deployedContract.lastBetId
+deployedContract.contractOwner
+deployedContract.balance
+deployedContract.minBet
+await deployedContract.getClosedBets()
+await deployedContract.getClosedBets({gasLimit: 2000000000000})
+await deployedContract.getClosedBets({gasLimit: 20000000000000000})
+await deployedContract.getClosedBets({gasLimit: 200000000000000000000000})
+await deployedContract.getClosedBets()
+await deployedContract.getOpenBets()
+deployedContract.getOpenBets()
+deployedContract
+const deployedContract = await myContract.attach("0x5fbdb2315678afecb367f032d93f642f64180aa3")
+2
+1
+myContract
+const myContract = await ethers.getContractFactory("Betting")
+const myContract = await ethers.getContractFactory("Betting");
+const myContract = await ethers.getContractFactory("MyContract");
+const myContract = await ethers.getContractFactory("Betting");
+const myContract = await ethers.getContractFactory("MyContract");
+const deployedContract = await myContract.attach("0x5fbdb2315678afecb367f032d93f642f64180aa3")
+const myContract = await ethers.getContractFactory("Betting")

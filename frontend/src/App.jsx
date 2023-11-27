@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
 import CreateBet from './pages/CreateBet';
-//import MyBets from './pages/MyBets'; 
+import MyBets from './pages/MyBets'; 
 import Home from './pages/Home';
 
 const router = createBrowserRouter([
@@ -14,10 +14,10 @@ const router = createBrowserRouter([
     path: '/create-bet',
     element: <CreateBet />,
   },
- // {
- //  path: '/my-bets',
- // element: <MyBets />,
-//},
+  {
+    path: '/my-bets',
+    element: <MyBets />,
+  },
   {
     path: '/home',
     element: <Home />,
