@@ -6,7 +6,7 @@ import './styles.css';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
-import Contract from 'truffle-contract';
+//import Contract from 'truffle-contract';
 
 const MyBets = () => {
   const { betId } = useParams();
