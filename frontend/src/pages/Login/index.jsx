@@ -1,6 +1,8 @@
-import React from 'react';
-import './index.css'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import React, { useEffect } from 'react';
+import './styles.css'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useAccount } from 'wagmi'
+import { useNavigate } from 'react-router-dom';
 
 const generateCoinImageCss = (n) => ({
         width: '20%',
@@ -21,13 +23,20 @@ const generateCoinsDivCss = (n) => ({
 
 })
 
-const Root = () => {
+const Login = () => {
+    const navigate = useNavigate();
+    const { isConnected } = useAccount();
+    useEffect(() => {
+        if (isConnected) navigate("/create-bet")
+    }, [isConnected])
+
+    const connectButton = <ConnectButton label="Login" />
     return (
         <>
             <div className='main-div'>
                 <div className="div-title-and-login">
                     <h1 className='title'> Betting.gg </h1>
-                    <ConnectButton label="Login"/>
+                    {connectButton}
                 </div>
                 <img src="assets/spongebob.png" className='spongebob-image' />
                 {
@@ -48,4 +57,4 @@ const Root = () => {
     );
 }
 
-export default Root;
+export default Login;

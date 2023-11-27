@@ -1,0 +1,15 @@
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.footer-text {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
