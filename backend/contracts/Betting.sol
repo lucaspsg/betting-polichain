@@ -11,6 +11,7 @@ contract Betting {
         bool isOpen;
         bool exists;
         uint256 betId;
+        address owner;
     }
 
     struct Better {
@@ -66,7 +67,8 @@ contract Betting {
             0,
             true,
             true,
-            lastBetId
+            lastBetId,
+            msg.sender
         );
         betIdToOwner[lastBetId] = msg.sender;
         openBets++;

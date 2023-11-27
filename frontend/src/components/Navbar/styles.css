@@ -11,6 +11,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid grey;
+    z-index: 100;
 }
 
 .wallet-div {

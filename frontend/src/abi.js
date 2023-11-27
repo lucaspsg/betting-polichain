@@ -199,6 +199,11 @@ const abi = [
               "internalType": "uint256",
               "name": "betId",
               "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
             }
           ],
           "internalType": "struct Betting.Bet[]",
@@ -262,6 +267,11 @@ const abi = [
               "internalType": "uint256",
               "name": "betId",
               "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
             }
           ],
           "internalType": "struct Betting.Bet[]",
@@ -365,7 +375,6 @@ const abi = [
       "stateMutability": "payable",
       "type": "function"
     }
-]
-
+  ]
 
 export default abi
