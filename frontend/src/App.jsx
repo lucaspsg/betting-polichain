@@ -1,26 +1,31 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './pages/Login'
-import CreateBet from './pages/CreateBet'
-import Home from './pages/Home'
+import Login from './pages/Login';
+import CreateBet from './pages/CreateBet';
+//import MyBets from './pages/MyBets'; 
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Login/>
+    path: '/',
+    element: <Login />,
   },
   {
-    path: "/create-bet",
-    element: <CreateBet/>
+    path: '/create-bet',
+    element: <CreateBet />,
   },
+ // {
+ //  path: '/my-bets',
+ // element: <MyBets />,
+//},
   {
-    path: "/home",
-    element: <Home/>
+    path: '/home',
+    element: <Home />,
   },
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 };
 
 export default App;
