@@ -1,0 +1,84 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.bets-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 135px;
+  left: 30px;
+  width: calc(100% - 30px);
+  height: calc(100% - 205px);
+}
+
+.betting-title {
+  font-size: 48px;
+  margin-bottom: 25px;
+  position: absolute;
+  left: 50px;
+  top: 30px;
+}
+
+.bet-list {
+  width: 400px;
+}
+
+.bet-card {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.bet-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.bet-card p {
+  margin: 5px 0;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.buttons {
+    height: 50px;
+    width: 150px;
+    margin-right: 20px;
+}
+
+.buttons-div {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    flex-wrap: wrap;
+}
+
+.input-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.bet-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: relative;
+}

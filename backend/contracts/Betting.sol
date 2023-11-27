@@ -99,7 +99,7 @@ contract Betting {
 
     function makeBet(uint256 betId, bool side) external payable {
         require(this.betExists(betId));
-        require(msg.value >= minBet);
+        require(msg.value >= minBet, "bet is not enough");
         Better memory better = Better(msg.sender, msg.value, side);  
         betIdToBetters[betId].push(better);
         bets[betId].amount += msg.value;
