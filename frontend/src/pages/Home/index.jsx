@@ -26,15 +26,15 @@ const Home = () => {
   }, [gambiarraValidation]);
 
   let { data: bets } = useContractRead({
-    // address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
-    address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
+    address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+    // address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
     abi: bettingAbi,
     functionName: 'getOpenBets',
   });
 
   const { config: makeBetConfig } = usePrepareContractWrite({
-    // address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
-    address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
+    address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+    // address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
     abi: bettingAbi,
     functionName: 'makeBet',
     args: [betId, betSide],
@@ -43,8 +43,8 @@ const Home = () => {
   const { write: makeBet } = useContractWrite(makeBetConfig);
 
   const { config: subscribeAsValidatorConfig } = usePrepareContractWrite({
-    // address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
-    address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
+    address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+    // address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
     abi: bettingAbi,
     functionName: 'subscribeAsValidator',
     args: [betId, validationSide],

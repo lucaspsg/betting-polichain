@@ -1,6 +1,7 @@
-FROM node:14-alpine
-COPY . /usr/src/app
-WORKDIR /usr/src/app
-RUN npm i
-RUN npx hardhat node
-RUN npx hardhat run --network localhost
+FROM node
+WORKDIR /app
+COPY . .
+RUN npm install
+
+EXPOSE 8545
+CMD ["/bin/bash", "-c", "npx hardhat node && sleep 5 && npx hardhat run --network localhost ./scripts/deploy.js"]
