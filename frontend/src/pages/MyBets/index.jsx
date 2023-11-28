@@ -10,10 +10,11 @@ const MyBets = () => {
     const navigate = useNavigate();
     const { address } = useAccount();
     const [betId, setBetId] = useState(BigInt(0));
+    const [gambiarra, setGambiarra] = useState(0);
     const [isScrollable, setIsScrollable] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
 
-    useEffect(() => closeBet?.(), [betId]);
+    useEffect(() => closeBet?.(), [gambiarra]);
 
     let { data: bets } = useContractRead({
         address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
@@ -50,17 +51,17 @@ const MyBets = () => {
           <Navbar navigate={navigate} />
           <div className="my-bets-container centralize-content">
               <h2 className="betting-title left-align">My Bets</h2> {/* Alterado o título aqui */}
-              {bets.length === 0 ? (
+              {bets?.length === 0 ? (
                   <p>No bets found.</p>
               ) : (
                   <div className="bet-list">
-                      {bets.map((bet) => (
+                      {bets?.map((bet) => (
                           <div key={bet.betId} className="bet-card">
                               <h3>{bet.name}</h3>
                               <p>Outcome 1: {bet.side1}</p>
                               <p>Outcome 2: {bet.side2}</p>
                               <p>Amount: {Number(bet.amount)}</p>
-                              <button onClick={() => setBetId(bet.betId)}> Close Bet </button>
+                              <button onClick={() => {setBetId(bet.betId); setGambiarra(gambiarra+1)}}> Close Bet </button>
                           </div>
                       ))}
                   </div>

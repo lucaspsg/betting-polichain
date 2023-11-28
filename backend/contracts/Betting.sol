@@ -114,19 +114,19 @@ contract Betting {
     }
 
     function getBetResult(uint256 betId) public view returns (bool) {
-    uint256 side1 = 0;
-    uint256 side2 = 0;
-    for (uint i = 0; i < betIdToBetters[betId].length; i++) {
-        Better memory better = betIdToBetters[betId][i];
-        if (better.side == false) side1++;
-        else side2++;
-    }
-    return side2 > side1;
+        uint256 side1 = 0;
+        uint256 side2 = 0;
+        for (uint i = 0; i < betIdToValidators[betId].length; i++) {
+            Validator memory validator = betIdToValidators[betId][i];
+            if (validator.side == false) side1++;
+            else side2++;
+        }
+        return side2 > side1;
     }
     
     function getBettersPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         bool betResult = getBetResult(betId);            
-        uint256 totalAmount = bets[betId].amount * 50 / 100; // 50% of prize amount goes to betters
+        uint256 totalAmount = bets[betId].amount * 90 / 100; // 90% of prize amount goes to betters
         uint256 totalAmountWinners = 0;
         uint256 prizesSize = 0;
         for (uint i = 0; i < betIdToBetters[betId].length; i++) {
@@ -152,7 +152,7 @@ contract Betting {
 
     function getValidatorsPrizes(uint256 betId) public view returns (PrizeInfo[] memory) {
         bool betResult = getBetResult(betId);            
-        uint256 totalAmount = bets[betId].amount * 10 / 100; // 8% of prize amount goes to validators
+        uint256 totalAmount = bets[betId].amount * 5 / 100; // 5% of prize amount goes to validators
         uint256 totalAmountRightValidators = 0;
         uint256 prizesSize = 0;
         for (uint i = 0; i < betIdToValidators[betId].length; i++) {
