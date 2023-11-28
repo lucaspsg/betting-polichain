@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import { useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi';
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
 import bettingAbi from '../../abi'
 
 const CreateBet = () => {
@@ -15,13 +15,13 @@ const CreateBet = () => {
   });
 
     const { config } = usePrepareContractWrite({
-        address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+        // address: '0x5fbdb2315678afecb367f032d93f642f64180aa3', localhost
+        address: '0x2F92d9da6E2d9587B075Ba408ef03ED911160062',
         abi: bettingAbi,
         functionName: 'createBet',
         args: [betDetails.name, betDetails.side1, betDetails.side2],
     })
-
-    const { write: createBet, isSuccess } = useContractWrite(config)
+    const { write: createBet } = useContractWrite(config)
 
 
   return (
