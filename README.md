@@ -1,8 +1,12 @@
 # PoliChain Hackathon Project - Betting Site
 
+![alt text](./bob.jpg)
+
 ## Welcome to our group's project for the PoliChain hackathon! 
 
 This is a web application developed using Vite, React, JSX, and connected to Metamask to create a decentralized betting site. Our application allows two participants to place a bet, and a judge determines the winner. The winner is rewarded with cryptocurrency, all managed by a smart contract on the blockchain.
+
+The deployed version of the website runs on Sepolia Chain and is available on https://frontend-betting.vercel.app/
 
 ### Getting Started
 
@@ -26,7 +30,7 @@ This is a web application developed using Vite, React, JSX, and connected to Met
 
 ### Running
 
-** Backend: **
+**Backend:**
 
 1. Run `npx hardhat node`
 2. In another terminal, run `npx hardhat run --network localhost ./scripts/deploy.js`
@@ -41,9 +45,10 @@ Now you can access the site in localhost:5173
 
 - Vite
 - React
-- JSX
-- Web3.js
 - Solidity
+- Hardhat
+- Wagmi
+- Rainbowkit
 
 ### Contribution
 
